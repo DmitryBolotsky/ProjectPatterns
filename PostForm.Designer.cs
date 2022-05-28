@@ -36,6 +36,7 @@
             this.tb_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.execute_info = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPost)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,9 +101,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(68, 583);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 25);
+            this.label1.Size = new System.Drawing.Size(31, 25);
             this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
+            this.label1.Text = "ID";
             // 
             // label2
             // 
@@ -111,13 +112,23 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 25);
             this.label2.TabIndex = 7;
-            this.label2.Text = "label2";
+            this.label2.Text = "Name";
+            // 
+            // execute_info
+            // 
+            this.execute_info.AutoSize = true;
+            this.execute_info.Location = new System.Drawing.Point(1047, 620);
+            this.execute_info.Name = "execute_info";
+            this.execute_info.Size = new System.Drawing.Size(125, 25);
+            this.execute_info.TabIndex = 8;
+            this.execute_info.Text = "Без запроса";
             // 
             // PostForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1310, 826);
+            this.Controls.Add(this.execute_info);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_name);
@@ -146,5 +157,6 @@
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label execute_info;
     }
 }

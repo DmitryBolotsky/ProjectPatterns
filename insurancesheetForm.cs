@@ -60,16 +60,29 @@ namespace projectsamozachet
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            //facade.insurancesheet_list.delete_el(Convert.ToInt32(tb_id_cl.Text));
-            //string insert_query = string.Format("DELETE FROM `client` WHERE `clientID`={0}",
-            //    Convert.ToInt32(tb_id_cl.Text));
-            //executeMyQuery(insert_query);
-            //data_reuse();
+            facade.insurancesheet_list.delete_el(Convert.ToInt32(tb_insuranceSheetID.Text));
+            string insert_query = string.Format("DELETE FROM `insurancesheet` WHERE `clientID`={0}",
+                Convert.ToInt32(tb_insuranceSheetID.Text));
+            executeMyQuery(insert_query);
+            data_reuse();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            int insuranceSheetID = Convert.ToInt32(tb_insuranceSheetID.Text);
+            int clientID = Convert.ToInt32(tb_cl.Text);
+            int emploeeID = Convert.ToInt32(tb_em.Text);
+            int automobilID = Convert.ToInt32(tb_autoid.Text);
+            string date = tb_date.Text;
 
+            Object[] list = { insuranceSheetID, clientID, emploeeID, automobilID, date};
+            facade.update_insurancesheet_list(list);
+            string insert_query = string.Format("UPDATE insurancesheet SET " +
+                "`insuranceSheetID`={0}, `clientID`='{1}', `emploeeID`='{2}', " +
+                "`automobilID`={3}, `date`={4}",insuranceSheetID.ToString(), clientID.ToString(), emploeeID.ToString(),automobilID.ToString(), date);
+            executeMyQuery(insert_query);
+            /*}*/
+            data_reuse();
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -80,6 +93,44 @@ namespace projectsamozachet
         private void tb_id_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        public void executeMyQuery(string query)
+        {
+            try
+            {
+                openConnection();
+                command = new MySqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    execute_info.ForeColor = System.Drawing.Color.Green;
+                    execute_info.Text = "Выполнено";
+                }
+                else
+                {
+                    execute_info.ForeColor = System.Drawing.Color.Red;
+                    execute_info.Text = "Не выполнено";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                closeConnection();
+            }
+        }
+
+        public void openConnection()
+        {
+            if (connection.State == ConnectionState.Closed)
+                connection.Open();
+        }
+
+        public void closeConnection()
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
     }
 }

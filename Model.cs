@@ -23,9 +23,18 @@ namespace projectsamozachet
         {
             insurancesheet_list.add_el(new Insurancesheet(Convert.ToInt32(obj[0]), Convert.ToInt32(obj[1]), Convert.ToInt32(obj[2]), Convert.ToInt32(obj[3]), obj[4].ToString()));
         }
+        public void update_insurancesheet_list(Object[] obj)
+        {
+            insurancesheet_list.update_el(new Insurancesheet(Convert.ToInt32(obj[0]), Convert.ToInt32(obj[1]), Convert.ToInt32(obj[2]), Convert.ToInt32(obj[3]), obj[4].ToString()));
+        
+        }
         public void create_post_list(Object[] obj)
         {
             post_list.add_el(new Post(Convert.ToInt32(obj[0]), obj[1].ToString()));
+        }
+        public void update_post_list(Object[] obj)
+        {
+            post_list.update_el(new Post(Convert.ToInt32(obj[0]), obj[1].ToString()));
         }
         public void update_client_list(Object[] obj)
         {
@@ -260,7 +269,11 @@ namespace projectsamozachet
             public void update_el(Insurancesheet id)
             {
                 Insurancesheet old_client = this.insurancesheet_list.Find(Insurancesheet => Insurancesheet.id() == id.id());
-
+                old_client.clientID = id.clientID;
+                old_client.insurancesheetID= id.insurancesheetID;
+                old_client.emploeeID = id.emploeeID;
+                old_client.automobilID = id.automobilID;
+                old_client.date = id.date;
             }
             public Object select_el(Insurancesheet obj)
             {
@@ -304,6 +317,8 @@ namespace projectsamozachet
             public void update_el(Post id)
             {
                 Post old_client = this.post_list.Find(Post => Post.id() == id.id());
+                old_client.postId = id.postId;
+                old_client.postName = id.postName;
 
             }
             public Object select_el(Post obj)

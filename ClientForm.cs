@@ -72,7 +72,7 @@ namespace projectsamozachet
 
 
             Object[] list = { clientID, Name, Surname, LastName, drivel,pas,phone };
-            //facade.create_dish_list(list);
+            facade.create_client_list(list);
             string insert_query = "INSERT INTO client(clientID, Name, Surname, LastName, driversLicense, pasportNS,phone) VALUES " +
                 $"({clientID}, \"{Name}\", \"{Surname}\",\"{LastName}\", {drivel}, {pas}, {phone})";
             executeMyQuery(insert_query);

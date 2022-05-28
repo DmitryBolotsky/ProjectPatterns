@@ -57,16 +57,41 @@ namespace projectsamozachet
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            int postID = Convert.ToInt32(tb_id.Text);
+            string postName = tb_name.Text;
+            
 
+
+            Object[] list = { postID,postName};
+            facade.create_post_list(list);
+            string insert_query = "INSERT INTO posts(postID,Name) VALUES " +
+                $"({postID}, \"{postName}\")";
+            executeMyQuery(insert_query);
+            /*}*/
+            data_reuse();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-
+            facade.post_list.delete_el(Convert.ToInt32(tb_id.Text));
+            string insert_query = string.Format("DELETE FROM `posts` WHERE `postID`={0}",
+                Convert.ToInt32(tb_id.Text));
+            executeMyQuery(insert_query);
+            data_reuse();
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            int postID = Convert.ToInt32(tb_id.Text);
+            string postName = tb_name.Text;
+            Object[] list = { postID, postName };
+            facade.update_post_list(list);
+
+            string insert_query = string.Format("UPDATE posts SET " +
+                "`postID`={0}, `postName`={1}",postID.ToString(), Name);
+            executeMyQuery(insert_query);
+            /*}*/
+            data_reuse();
 
         }
 
@@ -74,5 +99,49 @@ namespace projectsamozachet
         {
 
         }
+        public void executeMyQuery(string query)
+        {
+            try
+            {
+                openConnection();
+                command = new MySqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    execute_info.ForeColor = System.Drawing.Color.Green;
+                    execute_info.Text = "Выполнено";
+                }
+                else
+                {
+                    execute_info.ForeColor = System.Drawing.Color.Red;
+                    execute_info.Text = "Не выполнено";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                closeConnection();
+            }
+        }
+
+        public void openConnection()
+        {
+            if (connection.State == ConnectionState.Closed)
+                connection.Open();
+        }
+
+        public void closeConnection()
+        {
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+        }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

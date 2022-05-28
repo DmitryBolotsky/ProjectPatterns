@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.execute_info = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIns)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +168,21 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "date";
             // 
+            // execute_info
+            // 
+            this.execute_info.AutoSize = true;
+            this.execute_info.Location = new System.Drawing.Point(1055, 528);
+            this.execute_info.Name = "execute_info";
+            this.execute_info.Size = new System.Drawing.Size(127, 25);
+            this.execute_info.TabIndex = 14;
+            this.execute_info.Text = "Нет запроса";
+            // 
             // insurancesheetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1448, 808);
+            this.Controls.Add(this.execute_info);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -212,5 +223,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label execute_info;
     }
 }
